@@ -41,6 +41,7 @@ public extension RichTextContext {
         case .toggleStyle: true
         case .undoLatestChange: canUndoLatestChange
         case .setAttributeAt: true
+        case .setAttributesAt: true
         }
     }
 

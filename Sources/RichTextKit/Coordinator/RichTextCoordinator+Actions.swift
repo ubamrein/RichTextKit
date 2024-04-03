@@ -58,6 +58,13 @@ extension RichTextCoordinator {
             syncContextWithTextView()
         case .setAttributeAt(let attribute):
             textView.setRichTextAttributes([attribute.key:attribute.value], at: attribute.at)
+        case .setAttributesAt(let attributes):
+            textView.startEditing()
+            for attr in attributes {
+                textView.setRichTextAttribute(attr.key, to: attr.value, at: attr.at)
+            }
+            textView.endEditing()
+           
         }
     }
 }

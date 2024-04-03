@@ -54,4 +54,12 @@ public extension RichTextAttributeWriter {
         }
         string.endEditing()
     }
+    func startEditing() {
+        guard let string = mutableRichText else { return }
+        string.beginEditing()
+    }
+    func endEditing() {
+        guard let string = mutableRichText else { return }
+        string.endEditing()
+    }
 }

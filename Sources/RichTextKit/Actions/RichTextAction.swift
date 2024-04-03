@@ -78,6 +78,7 @@ public enum RichTextAction: Identifiable, Equatable, RichTextLabelValue {
     /// Undo the latest change.
     case undoLatestChange
     case setAttributeAt(AppliedAttribute)
+    case setAttributesAt([AppliedAttribute])
 }
 public struct AppliedAttribute: Hashable, Equatable {
     public static func == (lhs: AppliedAttribute, rhs: AppliedAttribute) -> Bool {
@@ -130,6 +131,7 @@ public extension RichTextAction {
         case .toggleStyle(let val): val.icon
         case .undoLatestChange: .richTextUndo
         case .setAttributeAt : .richTextSelection
+        case .setAttributesAt : .richTextSelection
         }
     }
 
@@ -180,6 +182,7 @@ public extension RichTextAction {
         case .toggleStyle(let style): style.titleKey
         case .undoLatestChange: .actionUndoLatestChange
         case .setAttributeAt: .setAttributedString
+        case .setAttributesAt: .setAttributedString
         }
     }
 }
