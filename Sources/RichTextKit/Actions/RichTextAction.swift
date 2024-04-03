@@ -77,6 +77,26 @@ public enum RichTextAction: Identifiable, Equatable, RichTextLabelValue {
 
     /// Undo the latest change.
     case undoLatestChange
+    case setAttributeAt(AppliedAttribute)
+}
+public struct AppliedAttribute: Hashable, Equatable {
+    public static func == (lhs: AppliedAttribute, rhs: AppliedAttribute) -> Bool {
+        lhs.key == rhs.key
+    }
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(key)
+        hasher.combine(at)
+    }
+    
+    public let key: NSAttributedString.Key
+    public let value: Any
+    public let at : NSRange
+    
+    public init(key: NSAttributedString.Key, value: Any, at: NSRange) {
+        self.key = key
+        self.value = value
+        self.at = at
+    }
 }
 
 public extension RichTextAction {
@@ -109,6 +129,7 @@ public extension RichTextAction {
         case .stepSuperscript(let val): .richTextStepSuperscript(val)
         case .toggleStyle(let val): val.icon
         case .undoLatestChange: .richTextUndo
+        case .setAttributeAt : .richTextSelection
         }
     }
 
@@ -158,6 +179,7 @@ public extension RichTextAction {
         case .stepSuperscript(let steps): .actionStepSuperscript(steps)
         case .toggleStyle(let style): style.titleKey
         case .undoLatestChange: .actionUndoLatestChange
+        case .setAttributeAt: .setAttributedString
         }
     }
 }

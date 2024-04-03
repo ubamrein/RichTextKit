@@ -56,6 +56,8 @@ extension RichTextCoordinator {
         case .undoLatestChange:
             textView.undoLatestChange()
             syncContextWithTextView()
+        case .setAttributeAt(let attribute):
+            textView.setRichTextAttributes([attribute.key:attribute.value], at: attribute.at)
         }
     }
 }

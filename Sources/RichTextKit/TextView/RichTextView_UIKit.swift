@@ -27,7 +27,6 @@ extension RichTextView: UIDropInteractionDelegate {}
 open class RichTextView: UITextView, RichTextViewComponent {
 
     // MARK: - Initializers
-
     public convenience init(
         data: Data,
         format: RichTextDataFormat = .archivedData
@@ -160,6 +159,10 @@ open class RichTextView: UITextView, RichTextViewComponent {
         with text: NSAttributedString,
         format: RichTextDataFormat
     ) {
+        self.smartQuotesType = .no
+        self.smartDashesType = .no
+        self.smartInsertDeleteType = .no
+        self.spellCheckingType = .yes
         text.autosizeImageAttachments(maxSize: imageAttachmentMaxSize)
         setupSharedBehavior(with: text, format)
         richTextDataFormat = format
